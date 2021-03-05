@@ -2,7 +2,7 @@ class OmniauthController < ApplicationController
     def github
         p params
 
-        redirect_to 'https://sample-devise-omniauth.netlify.app/'
+        redirect_to "https://sample-devise-omniauth.netlify.app/#{params[:code]}"
     end
 end
 

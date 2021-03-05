@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   #     get 'auth/github/callback/:code', to: 'omniauth#github'
   #   end
   # end
-  get 'github/:code', to: 'omniauth#github'
+  get 'github', to: 'omniauth#github'
 end

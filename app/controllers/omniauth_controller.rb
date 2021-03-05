@@ -1,7 +1,6 @@
 class OmniauthController < ApplicationController
     def github
-        p new_client.auth_code
-        access_token = new_client.auth_code.get_access_token(params[:code], :redirect_uri => "https://sample-devise-omniauth.netlify.app/#{access_token.token}")
+        access_token = new_client.auth_code.get_access_token(params[:code], :redirect_uri => "https://sample-devise-omniauth.netlify.app")
         p access_token.token
         redirect_to "https://sample-devise-omniauth.netlify.app/#{access_token.token}"
     end

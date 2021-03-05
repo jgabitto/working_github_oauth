@@ -1,8 +1,16 @@
 class OmniauthController < ApplicationController
     def github
         p params
+        access_token = new_client.web_server.get_access_token(params[:code], :redirect_uri => redirect_uri)
+        p access_token.token
+        redirect_to "https://sample-devise-omniauth.netlify.app/#{access_token.token}"
+    end
 
-        redirect_to "https://sample-devise-omniauth.netlify.app/#{params[:code]}"
+    private
+
+    def new_client
+        OAuth2::Client.new(Rails.application.credentials.fetch(:client_id), Rails.application.credentials.fetch(:client_secret), :site => 'https://github.com',
+          :authorize_path => '/login/oauth/authorize', :access_token_path => '/login/oauth/access_token')
     end
 end
 

@@ -1,15 +1,17 @@
 class OmniauthController < ApplicationController
     require 'net/http'
     require 'httparty'
+    require 'cgi'
 
     def github
         uri1 = URI('https://github.com/login/oauth/access_token')
         # uri2 = URI('https://api.github.com/user')
 
         response = Net::HTTP.post_form(uri1, 'client_id' => Rails.application.credentials.fetch(:client_id), 'client_secret' => Rails.application.credentials.fetch(:client_secret), 'code' => params[:code])
-        p response.body
-        info = HTTParty.get('https://api.github.com/user', headers: { Authorization: "token #{response.body.access_token}"})
-        p info.body
+        data = CGI::parse(response.body)
+        p data.access_token
+        info = HTTParty.get('https://api.github.com/user', headers: { Authorization: "token #{data.access_token}"})
+        # p info.body
         redirect_to "https://sample-devise-omniauth.netlify.app/"
     end
 

@@ -13,7 +13,7 @@ class OmniauthController < ApplicationController
         token = data.values[0]
         p token[0]
         headers = {
-            "Authorization" => "token #{token}",
+            "Authorization" => "token #{token[0]}",
             "User-Agent" => "jgabitto"
         }
         info = HTTParty.get('https://api.github.com/user', :headers => headers)

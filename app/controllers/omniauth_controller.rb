@@ -12,12 +12,12 @@ class OmniauthController < ApplicationController
         p data
         token = data.values[0]
         p token[0]
-        # headers = {
-        #     "Authorization" => "token #{data["access_token"]}",
-        #     "User-Agent" => "jgabitto"
-        # }
-        # info = HTTParty.get('https://api.github.com/user', :headers => headers)
-        # p info
+        headers = {
+            "Authorization" => "token #{token}",
+            "User-Agent" => "jgabitto"
+        }
+        info = HTTParty.get('https://api.github.com/user', :headers => headers)
+        p info
         redirect_to "https://sample-devise-omniauth.netlify.app/"
     end
 

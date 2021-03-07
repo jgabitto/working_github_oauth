@@ -18,6 +18,8 @@ class OmniauthController < ApplicationController
         }
         info = HTTParty.get('https://api.github.com/user', :headers => headers)
         p info
+        email = HTTParty.get('https://api.github.com/user/emails', :headers => headers)
+        p email
         redirect_to "https://sample-devise-omniauth.netlify.app/"
     end
 

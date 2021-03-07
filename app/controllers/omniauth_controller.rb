@@ -11,7 +11,7 @@ class OmniauthController < ApplicationController
         data = CGI::parse(response.body)
         p data
         token = data.values[0]
-        p token
+        p token[0]
         # headers = {
         #     "Authorization" => "token #{data["access_token"]}",
         #     "User-Agent" => "jgabitto"

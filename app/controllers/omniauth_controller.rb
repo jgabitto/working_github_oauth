@@ -11,7 +11,7 @@ class OmniauthController < ApplicationController
         data = CGI::parse(response.body)
         p data
         p data["access_token"]
-        info = HTTParty.get('https://api.github.com/user', headers: { Authorization: "token #{data["access_token"]}"})
+        info = HTTParty.get('https://api.github.com/user', headers: { Authorization: "token #{data["access_token"]}", User-Agent: "jgabitto"})
         p info
         redirect_to "https://sample-devise-omniauth.netlify.app/"
     end

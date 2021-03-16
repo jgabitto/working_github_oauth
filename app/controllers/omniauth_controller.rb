@@ -20,7 +20,7 @@ class OmniauthController < ApplicationController
         p info
         email = HTTParty.get('https://api.github.com/user/emails', :headers => headers)
         p email
-        redirect_to "localhost:3000"
+        redirect_to "http://localhost:3000"
     end
 
 end
